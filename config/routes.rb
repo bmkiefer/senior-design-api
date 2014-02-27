@@ -8,9 +8,12 @@ DeviseExample::Application.routes.draw do
         delete 'sessions' => 'sessions#destroy', :as => 'logout'
       end
       get 'tasks' => 'tasks#index', :as => 'tasks'
+      get 'my_organizations' => 'my_organizations#index'
       get 'admin_games' => 'admin_games#index'  
       get 'games' => 'games#index'
       put 'admin_games' => 'admin_games#update'
+      post 'my_favorites' => 'my_favorites#create'
+      post 'search_organizations' => 'search_organizations#create'
     end
   end
 
