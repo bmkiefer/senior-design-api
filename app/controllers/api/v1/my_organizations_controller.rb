@@ -12,7 +12,7 @@ class Api::V1::MyOrganizationsController < ApplicationController
 	render :status => 200,
            :json => { :success => true,
                       :info => "Logged in",
-                      :data => my_organizations
+                      :data => {:organizations => my_organizations}
                                
                     }
   end
