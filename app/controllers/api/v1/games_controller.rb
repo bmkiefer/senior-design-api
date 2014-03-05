@@ -14,14 +14,15 @@ class Api::V1::GamesController < ApplicationController
            :json => { :success => true,
                       :info => "Logged in",
                       :data => { 
-                      		   "game" => {
-                           	      "id"=> 1,
-                           	      "home_organization"=>"Iowa City City High",
-                           	      "away_organization"=>"Dubuque Hempstead",
-                           	      "home_score"=> game.home_score,
-                           	      "away_score"=> game.away_score,
-                        	      "sport"=>"basketball"
-                        	    }
+				   "games" => [{
+                                      "id"=> 1,
+                                      "home_organization"=>"Iowa City City High",
+                                      "away_organization"=>"Dubuque Hempstead",
+                                      "home_score"=> 0,
+                                      "away_score"=> 0,
+                                      "sport"=>"basketball"
+                                    }]
+			         
                                } 
                     }
 	
