@@ -7,21 +7,21 @@ class Api::V1::AdminGamesController < ApplicationController
 
   respond_to :json
 
-  def index
-	game = Game.first!
+  def show
+	admin_games = Game.all
 	render :status => 200,
            :json => { :success => true,
                       :info => "Logged in",
                       :data => {
 
-                                   "game" => {
+                                   "admin_games" => [{
                                       "id"=> 1,
                                       "home_organization"=>"Iowa City City High",
                                       "away_organization"=>"Dubuque Hempstead",
-                                      "home_score"=> game.home_score,
-                                      "away_score"=> game.away_score,
+                                      "home_score"=> 0,
+                                      "away_score"=> 0,
                                       "sport"=>"basketball"
-                                    }
+                                    }]
                                }
                     }
   end
@@ -37,4 +37,7 @@ class Api::V1::AdminGamesController < ApplicationController
                       :info => "Update Score",
                       :data => {} }   
   end
+
+
+
 end

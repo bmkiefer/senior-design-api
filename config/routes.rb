@@ -9,7 +9,9 @@ DeviseExample::Application.routes.draw do
       end
       get 'tasks' => 'tasks#index', :as => 'tasks'
       get 'my_organizations' => 'my_organizations#index'
-      get 'admin_games' => 'admin_games#index'  
+      post 'admin_games' => 'admin_games#show'
+      post 'admin_teams' => 'admin_teams#show'
+      get 'admin_organizations' => 'admin_organizations#show'
       get 'games' => 'games#index'
       put 'admin_games' => 'admin_games#update'
       post 'my_favorites' => 'my_favorites#create'
