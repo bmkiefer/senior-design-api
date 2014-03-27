@@ -40,8 +40,8 @@ class Api::V1::AdminGamesController < ApplicationController
 
   def create
    game = Game.create(:home_score => 0, :away_score => 0)
-   home_organization
-   away_organization
+  # home_organization
+  # away_organization
    render :status => 200,
            :json => { :success => true,
                       :info => "Game Created",
