@@ -7,16 +7,17 @@ DeviseExample::Application.routes.draw do
         post 'sessions' => 'sessions#create', :as => 'login'
         delete 'sessions' => 'sessions#destroy', :as => 'logout'
       end
-      get 'tasks' => 'tasks#index', :as => 'tasks'
       get 'my_organizations' => 'my_organizations#index'
       post 'admin_games' => 'admin_games#show'
+      put 'admin_games' => 'admin_games#update'
       post 'admin_teams' => 'admin_teams#show'
       get 'admin_organizations' => 'admin_organizations#show'
       get 'games' => 'games#index'
-      put 'admin_games' => 'admin_games#update'
-      post 'admin_games' => 'admin_games#create'
       post 'my_favorites' => 'my_favorites#create'
       post 'search_organizations' => 'search_organizations#create'
+      get 'manage_games' => 'manage_games#index'
+      post 'manage_games' => 'manage_games#create'
+      put 'manage_games' => 'manage_games#destroy'
     end
   end
 
