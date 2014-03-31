@@ -19,7 +19,7 @@ class Api::V1::ManageGamesController < ApplicationController
 
 
   def create
-   game = Game.create(:home_score => 0, :away_score => 0, :sport)
+   game = Game.create(:home_score => 0, :away_score => 0)
 
    if Team.where(:organization_id => params[:game][:home_organization], :sport => params[:game][:sport]).length == 0
      Team.create(:organization_id => params[:game][:home_organization], :sport => params[:game][:sport])
