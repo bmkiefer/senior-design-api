@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140218045056) do
+ActiveRecord::Schema.define(version: 20140331061029) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -52,8 +52,12 @@ ActiveRecord::Schema.define(version: 20140218045056) do
   end
 
   create_table "games", force: true do |t|
-    t.integer "home_score"
-    t.integer "away_score"
+    t.integer  "home_score"
+    t.integer  "away_score"
+    t.string   "home_organization"
+    t.string   "away_organization"
+    t.string   "sport"
+    t.datetime "date"
   end
 
   create_table "home_teams", force: true do |t|

@@ -19,7 +19,7 @@ class Api::V1::ManageGamesController < ApplicationController
 
 
   def create
-   game = Game.create(:home_score => 0, :away_score => 0)
+   game = Game.create(:home_score => 0, :away_score => 0, :sport)
 
    if Team.where(:organization_id => params[:game][:home_organization], :sport => params[:game][:sport]).length == 0
      Team.create(:organization_id => params[:game][:home_organization], :sport => params[:game][:sport])
@@ -39,7 +39,14 @@ class Api::V1::ManageGamesController < ApplicationController
   end
 
   def destroy
-   Game.find(params[:game][:id]).destroy
+ 
+   game = Game.find(params[:game][:id])
+
+   HomeTeam.find(:game_id => game.id).destroy
+   AwayTeam.find(:game_id => game.id).destroy
+
+   game.destroy   
+
    render :status => 200,
            :json => { :success => true,
                       :info => "Game Deleted",

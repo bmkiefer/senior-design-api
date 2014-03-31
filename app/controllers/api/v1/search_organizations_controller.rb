@@ -8,7 +8,7 @@ class Api::V1::SearchOrganizationsController < ApplicationController
   respond_to :json
 
   def create
-    search_condition = "%" + params[:search][:keyword] + "%"
+    search_condition = "%" + params[:search][:keyword] + "%" + "/i"
     organizations = Organization.where('name LIKE ?', search_condition)
 
     render :status => 200,
