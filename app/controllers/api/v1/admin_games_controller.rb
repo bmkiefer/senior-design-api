@@ -9,6 +9,15 @@ class Api::V1::AdminGamesController < ApplicationController
 
   def show
 	admin_games = Game.all
+
+        admin_games_array = []
+
+#	admin_games.each do |game|
+#
+#          admin_game_element
+#	    
+#        end
+
 	render :status => 200,
            :json => { :success => true,
                       :info => "Logged in",
@@ -36,16 +45,6 @@ class Api::V1::AdminGamesController < ApplicationController
            :json => { :success => true,
                       :info => "Update Score",
                       :data => {} }   
-  end
-
-  def create
-   game = Game.create(:home_score => 0, :away_score => 0)
-  # home_organization
-  # away_organization
-   render :status => 200,
-           :json => { :success => true,
-                      :info => "Game Created",
-                      :data => {} }
   end
 
 end

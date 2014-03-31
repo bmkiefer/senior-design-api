@@ -11,7 +11,7 @@ class Api::V1::ManageGamesController < ApplicationController
    organizations = Organization.all
    render :status => 200,
            :json => { :success => true,
-                      :info => "Game Created",
+                      :info => "Game Create Start",
                       :data => {
 					:organizations => organizations
 				} }
@@ -20,8 +20,18 @@ class Api::V1::ManageGamesController < ApplicationController
 
   def create
    game = Game.create(:home_score => 0, :away_score => 0)
-  # home_organization
-  # away_organization
+
+   if Team.where(:organization_id => params[:game][:home_organization], :sport => params[:game][:sport]).length == 0
+     Team.create(:organization_id => params[:game][:home_organization], :sport => params[:game][:sport])
+   end
+
+   if Team.where(:organization_id => params[:game][:away_organization], :sport => params[:game][:sport]).length == 0
+     Team.create(:organization_id => params[:game][:away_organization], :sport => params[:game][:sport])
+   end
+
+   HomeTeam.create( :team_id => Team.where(:organization_id => params[:game][:home_organization], :sport => params[:game][:sport] ).pluck(:id).first, :game_id => game.id)
+   AwayTeam.create( :team_id => Team.where(:organization_id => params[:game][:away_organization], :sport => params[:game][:sport] ).pluck(:id).first, :game_id => game.id)
+
    render :status => 200,
            :json => { :success => true,
                       :info => "Game Created",

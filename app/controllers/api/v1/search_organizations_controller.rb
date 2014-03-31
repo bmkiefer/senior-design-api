@@ -8,11 +8,14 @@ class Api::V1::SearchOrganizationsController < ApplicationController
   respond_to :json
 
   def create
-	organizations = Organization.all
-	render :status => 200,
-               :json => { :success => true,
-                          :info => "Logged in",
-                          :data =>{:organizations =>  organizations }
-			}
+    search_condition = "%" + params[:search][:keyword] + "%"
+    organizations = Organization.where('name LIKE ?', search_condition)
+
+    render :status => 200,
+      :json => { 
+        :success => true,
+        :info => "Logged in",
+        :data =>{:organizations =>  organizations }
+      }
   end
 end
