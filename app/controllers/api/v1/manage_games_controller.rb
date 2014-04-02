@@ -19,8 +19,15 @@ class Api::V1::ManageGamesController < ApplicationController
 
 
   def create
-   game = Game.create(:home_score => 0, :away_score => 0)
 
+   game_date = DateTime.new(params[:game][:year],params[:game][:month],params[:game][:day])
+  
+   home_org = Organization.find(params[:game][:home_organization])
+  
+   away_org = Organization.find(params[:game][:away_organization])
+  
+   game = Game.create(:home_score => 0, :away_score => 0, :sport => params[:game][:sport], :home_organization => home_org.name, :away_organization => away_org.name, :date => game_date )
+   
    if Team.where(:organization_id => params[:game][:home_organization], :sport => params[:game][:sport]).length == 0
      Team.create(:organization_id => params[:game][:home_organization], :sport => params[:game][:sport])
    end

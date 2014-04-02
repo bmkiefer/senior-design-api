@@ -8,29 +8,13 @@ class Api::V1::AdminGamesController < ApplicationController
   respond_to :json
 
   def show
-	admin_games = Game.all
-
-        admin_games_array = []
-
-#	admin_games.each do |game|
-#
-#          admin_game_element
-#	    
-#        end
+	admin_games = Game.where( :id =>  HomeTeam.where(:team_id => params[:team][:id]).pluck(:game_id))
 
 	render :status => 200,
            :json => { :success => true,
                       :info => "Logged in",
                       :data => {
-
-                                   "admin_games" => [{
-                                      "id"=> 1,
-                                      "home_organization"=>"Iowa City City High",
-                                      "away_organization"=>"Dubuque Hempstead",
-                                      "home_score"=> 0,
-                                      "away_score"=> 0,
-                                      "sport"=>"basketball"
-                                    }]
+                                   "admin_games" => admin_games
                                }
                     }
   end

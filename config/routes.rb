@@ -13,6 +13,7 @@ DeviseExample::Application.routes.draw do
       post 'admin_teams' => 'admin_teams#show'
       get 'admin_organizations' => 'admin_organizations#show'
       get 'games' => 'games#index'
+      get 'events' => 'events#index'
       post 'my_favorites' => 'my_favorites#create'
       post 'search_organizations' => 'search_organizations#create'
       get 'manage_games' => 'manage_games#index'
