@@ -51,8 +51,8 @@ class Api::V1::ManageGamesController < ApplicationController
  
    game = Game.find(params[:game][:id])
 
-   HomeTeam.find(:game_id => game.id).destroy
-   AwayTeam.find(:game_id => game.id).destroy
+   HomeTeam.find_by_game_id( game.id).destroy
+   AwayTeam.find_by_game_id( game.id).destroy
 
    game.destroy   
 
