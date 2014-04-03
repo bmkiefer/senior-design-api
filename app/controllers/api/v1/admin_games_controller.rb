@@ -8,7 +8,7 @@ class Api::V1::AdminGamesController < ApplicationController
   respond_to :json
 
   def show
-	admin_games = Game.where( :id =>  HomeTeam.where(:team_id => params[:team][:id]).pluck(:game_id))
+	admin_games = Game.where( :id =>  HomeTeam.where(:team_id => params[:team][:id]).pluck(:game_id)).order('date asc')
 
 	render :status => 200,
            :json => { :success => true,

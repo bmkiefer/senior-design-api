@@ -12,7 +12,11 @@ class Api::V1::GamesController < ApplicationController
     home_teams = HomeTeam.where(:team_id => myteams).pluck(:game_id) 
     away_teams = AwayTeam.where(:team_id => myteams).pluck(:game_id)
     my_game_ids = home_teams | away_teams
-    my_games = Game.where( :id => my_game_ids)
+    
+    earlydate = Date.today - 2
+    latedate = Date.today + 2
+
+    my_games = Game.where( :id => my_game_ids ).where(["date > ?", earlydate]).where(["date < ?", latedate]).order('date asc')
    
     render :status => 200,
            :json => { :success => true,
