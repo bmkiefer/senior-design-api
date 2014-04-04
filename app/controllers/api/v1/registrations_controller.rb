@@ -14,7 +14,7 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
                       :info => "Registered",
                       :data => { :user => resource,
                                  :auth_token => current_user.authentication_token,
-				 :admin_token => false
+				 :admin_token => "false"
 		      } }
     else
       render :status => :unprocessable_entity,

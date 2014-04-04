@@ -13,8 +13,8 @@ class Api::V1::GamesController < ApplicationController
     away_teams = AwayTeam.where(:team_id => myteams).pluck(:game_id)
     my_game_ids = home_teams | away_teams
     
-    earlydate = Date.today - 2
-    latedate = Date.today + 2
+    earlydate = Date.today - 7
+    latedate = Date.today + 7
 
     my_games = Game.where( :id => my_game_ids ).where(["date > ?", earlydate]).where(["date < ?", latedate]).order('date asc')
    
